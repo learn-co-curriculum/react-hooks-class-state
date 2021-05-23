@@ -1,21 +1,21 @@
 # Using State in Class Components
 
-## Overview
+## Learning Goals
 
-Before React Hooks came along, using **state** in a component was only
-possible in class components. In this lesson, we'll see how state works
-inside of class components and a few of the similarities and differences
-with how it works in function components.
+- Create an initial state object in a class component
+- Use the `this.setState` method to update state
 
-## Objectives
+## Introduction
 
-1. Create an initial state object in a class component
-2. Use the `this.setState` method to update state
+Before React Hooks came along, using **state** in a component was only possible
+in class components. In this lesson, we'll see how state works inside of class
+components and a few of the similarities and differences with how it works in
+function components.
 
 ## Initializing State
 
-In a function component, any time we needed to add state variables to
-our components, we use the `useState` hook, like so:
+In a function component, any time we needed to add state variables to our
+components, we use the `useState` hook, like so:
 
 ```js
 import React, { useState } from "react";
@@ -32,8 +32,9 @@ function TodoList() {
 }
 ```
 
-In a class, instead of using the `useState` hook, we can create an initial state
-by adding a special property of `state` to our component instance, like so:
+In a class, we can't use Hooks! So instead of using the `useState` hook, we can
+create an initial state by adding a special property of `state` to our component
+instance, like so:
 
 ```js
 import React from "react";
@@ -81,10 +82,11 @@ class TodoList extends React.Component {
 ```
 
 Both of these versions of initializing state will work; the first version uses a
-relatively new feature of Javascript called
-[public instance fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#Public_instance_fields),
-but thanks to Babel we can safely use this new feature and still support older
+relatively new feature of Javascript called [public instance fields][], but
+thanks to Babel we can safely use this new feature and still support older
 browsers!
+
+[public instance fields]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#Public_instance_fields
 
 You'll also notice that in the `render` method, we can access our state values
 by calling `this.state`. Just like with props, we need to use `this` to access
@@ -138,8 +140,9 @@ state = {
 
 When setting state, the object passed to `setState` _only_ needs the keys that
 we're trying to update (no need for a fancy spread operator or anything). This
-is because
-[state updates are merged](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged).
+is because [state updates are merged][].
+
+[state updates are merged]: https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged
 
 Also, just like when we use the setter function from `useState`, calling
 `setState` will not only update the values for our component's state, it will
@@ -203,7 +206,7 @@ In this version of `setState`, we provide a callback function that will be
 called with the previous values of state for this component. The callback should
 return an object with any values from state that we want to update.
 
-## Summary
+## Conclusion
 
 In class components, we can initialize state by creating a `state` object in the
 class. To update state, we must use the `this.setState` function with either an
