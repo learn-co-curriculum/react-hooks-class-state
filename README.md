@@ -17,7 +17,7 @@ function components.
 In a function component, any time we needed to add state variables to our
 components, we use the `useState` hook, like so:
 
-```js
+```jsx
 import React, { useState } from "react";
 
 function TodoList() {
@@ -36,7 +36,7 @@ In a class, we can't use Hooks! So instead of using the `useState` hook, we can
 create an initial state by adding a special property of `state` to our component
 instance, like so:
 
-```js
+```jsx
 import React from "react";
 
 class TodoList extends React.Component {
@@ -59,7 +59,7 @@ class TodoList extends React.Component {
 
 In even older React code bases, you might see state initialized like this:
 
-```js
+```jsx
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
@@ -98,13 +98,13 @@ In our function components, we use the **setter** function returned by
 `useState` to update each state variable individually. For example, to update
 the filter variable from our example, we'd do:
 
-```js
+```jsx
 setFilter("complete");
 ```
 
 And to update the todos, we'd do:
 
-```js
+```jsx
 setTodos([...todos, newTodo]);
 ```
 
@@ -115,7 +115,7 @@ special method from React to do just that: `this.setState()`.
 When we use `this.setState`, we pass in an **object** with the key in state
 we're trying to update, like this:
 
-```js
+```jsx
 this.setState({
   filter: "Incomplete",
 });
@@ -123,7 +123,7 @@ this.setState({
 
 Or this:
 
-```js
+```jsx
 this.setState({
   todos: [...this.state.todos, newTodo],
 });
@@ -131,7 +131,7 @@ this.setState({
 
 Notice that when using `setState`, even though our initial state looks like this:
 
-```js
+```jsx
 state = {
   todos: [],
   filter: "incomplete",
@@ -154,7 +154,7 @@ As noted when we learned about the `useState` hook, setting state is
 **asynchronous**, which means that state is not immediately updated when
 we call the setter function:
 
-```js
+```jsx
 function increment() {
   console.log(`before setState: ${count}`);
   // => 0
@@ -169,7 +169,7 @@ function increment() {
 
 The same is true when using `this.setState`:
 
-```js
+```jsx
 increment() {
   console.log(`before setState: ${this.state.count}`);
   // => 0
@@ -189,7 +189,7 @@ increment() {
 However, if we pass a **callback function** to `setState` instead of passing an
 object, we can access the current value of state between each function call:
 
-```js
+```jsx
 increment() {
   this.setState(prevState => {
     console.log(prevState.count) // => 0
